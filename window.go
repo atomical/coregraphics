@@ -32,11 +32,6 @@ package coregraphics
 import "C"
 import "unsafe"
 
-import (
-  "fmt"
-)
-
-
 // Quartz Window Services Reference
 // https://developer.apple.com/library/mac/documentation/Carbon/reference/CGWindow_Reference/Reference/Functions.html
 
@@ -112,7 +107,6 @@ func CGWindowListCopyWindowInfo( option C.CGWindowListOption, relativeToWindow C
                       WindowId: windowId,
                       Rect: rect,
                     }
-    fmt.Println(windows[iter])
 
     // const CFStringRef kCGWindowNumber;
     // const CFStringRef kCGWindowStoreType;
