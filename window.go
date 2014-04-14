@@ -35,8 +35,6 @@ import "unsafe"
 // Quartz Window Services Reference
 // https://developer.apple.com/library/mac/documentation/Carbon/reference/CGWindow_Reference/Reference/Functions.html
 
-// CGWindowID
-
 const (
   KCGNullWindowID           = C.kCGNullWindowID
   KCGWindowSharingNone      = C.kCGWindowSharingNone
@@ -79,12 +77,13 @@ type Rect struct {
   Height float64
 }
 
+type CGWindowID C.CGWindowID
+
 type Window struct {
   OwnerName string
-  WindowId  int
+  WindowId  CGWindowID
   Rect Rect
 }
-
 
 func CGWindowListCopyWindowInfo( option C.CGWindowListOption, relativeToWindow C.CGWindowID) ( []Window ) {
 
@@ -104,7 +103,7 @@ func CGWindowListCopyWindowInfo( option C.CGWindowListOption, relativeToWindow C
 
     windows[iter] = Window{
                       OwnerName: name, 
-                      WindowId: windowId,
+                      WindowId: CGWindowID(windowId),
                       Rect: rect,
                     }
 
